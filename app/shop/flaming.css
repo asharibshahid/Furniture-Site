@@ -1,0 +1,16 @@
+@keyframes flame-border {
+    0% {
+      box-shadow: 0px 0px 10px #ffcc00, 0px 0px 20px #ff5733;
+    }
+    50% {
+      box-shadow: 0px 0px 15px #ffcc00, 0px 0px 30px #ff5733, 0px 10px 20px rgba(255, 87, 51, 0.7);
+    }
+    100% {
+      box-shadow: 0px 0px 10px #ffcc00, 0px 0px 20px #ff5733;
+    }
+  }
+  
+  .product-card {
+    animation: flame-border 1.5s infinite alternate;
+  }
+  
