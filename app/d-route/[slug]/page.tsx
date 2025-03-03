@@ -1,15 +1,10 @@
+
 import { SanityFetch } from "@/sanity/lib/fetch";
 import { AllProducts } from "@/sanity/lib/queries";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
-// Define correct page props type
-type PageProps = {
-  params: { slug: string };
-  searchParams: Record<string, string | string[] | undefined>;
-};
 
 // Fetch all products and find the one matching the slug
 async function getProduct(slug: string): Promise<Product | undefined> {
@@ -26,8 +21,13 @@ export async function generateStaticParams() {
   }));
 }
 
-// Main component with correct type annotation
-export default async function ProductDetail({ params }: PageProps) {
+// Main component using the generated type directly
+export default async function ProductDetail({
+  params,
+}: {
+  params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   // Fetch the product based on the slug
   const product = await getProduct(params.slug);
 
