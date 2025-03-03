@@ -11,7 +11,7 @@ async function getProduct(slug: string): Promise<Product | undefined> {
   return products.find((item) => item.slug.current === slug);
 }
 
-// Add this function to resolve type conflicts
+// Generate static paths for all products
 export async function generateStaticParams() {
   const products: Product[] = await SanityFetch({ query: AllProducts });
 
@@ -20,13 +20,16 @@ export async function generateStaticParams() {
   }));
 }
 
+// Main component
 export default async function ProductDetail({
   params,
 }: {
   params: { slug: string };
 }) {
+  // Fetch the product based on the slug
   const product = await getProduct(params.slug);
 
+  // If the product is not found, return a 404 page
   if (!product) {
     return notFound();
   }
